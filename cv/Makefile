@@ -1,6 +1,6 @@
 # Makefile for Conditional Variables Server (CV)
 PROG=	cv
-SRCS=	main.c
+SRCS=	main.c queue.c mutex.c
 
 DPADD+=	${LIBSYS}
 LDADD+=	-lsys

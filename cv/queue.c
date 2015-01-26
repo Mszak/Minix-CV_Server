@@ -1,9 +1,10 @@
 #include <minix/endpoint.h>
+#include <stdlib.h>
 
 #include "queue.h"
 
-queue* create_queue() {
-	queue* new_queue = malloc(sizeof(struct queue));
+struct queue* create_queue() {
+	struct queue* new_queue = malloc(sizeof(struct queue));
 	new_queue->head = malloc(sizeof(struct queue_node));
 	new_queue->head->next = NULL;
 	new_queue->tail = new_queue->head;
@@ -19,8 +20,8 @@ void push(struct queue* q, endpoint_t e) {
 }
 
 endpoint_t pop(struct queue* q) {
-	queue_node* result = q->head->next;
-	q->head = q->result->next;
+	struct queue_node* result = q->head->next;
+	q->head = result->next;
 	int result_proc = result->proc_nr;
 	free(result);
 	return result_proc;

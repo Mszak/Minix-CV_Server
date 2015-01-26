@@ -14,9 +14,8 @@
 
 int main(int argx, char** argv)
 {
-	printf("%d\n", cs_lock(5));
-	printf("%d\n", cs_unlock(5));
-	printf("%d\n", cs_wait(5, 4));
-	printf("%d\n", cs_broadcast(5));
+	cs_lock(5);
+	printf("Got lock\n");
+	while (1);
 	return 0;
 }

@@ -1,5 +1,6 @@
 #include "inc.h"
 #include "constants.h"
+#include "mutex.h"
 
 #include <minix/endpoint.h>
 #include <minix/callnr.h>
@@ -105,6 +106,9 @@ static void sef_local_startup()
 
   /* Let SEF perform startup. */
   sef_startup();
+
+  /* Init mutex table */
+  init_mutex_table();
 }
 
 /*===========================================================================*
@@ -131,8 +135,11 @@ static void sef_cb_signal_handler(int signo)
  *===========================================================================*/
 static int do_lock()
 {
-  
-    return 1;
+  printf("CV_LOCK: mutex: %d, proc: %d\n", req_mutex, who_e);
+  int res = lock(req_mutex, who_e);
+  printf("CV_LOCK_ANSWER: mutex: %d, proc: %d\n, res: %d\n", req_mutex, who_e, res);
+  printf("CV_LOCK_EDONOTREPLY: %d\n", EDONTREPLY);
+  return res;
 }
 
 /*===========================================================================*
@@ -156,5 +163,5 @@ static int do_wait()
  *===========================================================================*/
 static int do_broadcast()
 {
-    return 4;
+  return 4;
 }
