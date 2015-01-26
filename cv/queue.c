@@ -21,7 +21,10 @@ void push(struct queue* q, endpoint_t e) {
 
 endpoint_t pop(struct queue* q) {
 	struct queue_node* result = q->head->next;
-	q->head = result->next;
+	q->head->next = result->next;
+	if (q->head->next == NULL) {
+		q->tail = q->head;
+	}
 	int result_proc = result->proc_nr;
 	free(result);
 	return result_proc;

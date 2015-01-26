@@ -147,7 +147,10 @@ static int do_lock()
  *===========================================================================*/
 static int do_unlock()
 {
-  return 2;
+  printf("CV_UNLOCK: mutex: %d, proc: %d\n", req_mutex, who_e);
+  int res = unlock(req_mutex, who_e);
+  printf("CV_UNLOCK_ANSWER: mutex: %d, proc: %d\n, res: %d\n", req_mutex, who_e, res);
+  return res;
 }
 
 /*===========================================================================*

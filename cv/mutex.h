@@ -3,5 +3,6 @@
 
 void init_mutex_table(void);
 int lock(int, int);
+int unlock(int, int);
 
 #endif

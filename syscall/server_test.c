@@ -16,6 +16,8 @@ int main(int argx, char** argv)
 {
 	cs_lock(5);
 	printf("Got lock\n");
-	while (1);
+	int x;
+	scanf("%d", &x);
+	cs_unlock(5);
 	return 0;
 }
