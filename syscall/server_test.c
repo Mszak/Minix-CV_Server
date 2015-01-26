@@ -11,13 +11,15 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <cv.h>
+#include <errno.h>
+#include <string.h>
 
 int main(int argx, char** argv)
 {
 	cs_lock(5);
-	printf("Got lock\n");
-	int x;
-	scanf("%d", &x);
-	cs_unlock(5);
+	// printf("Got lock\n");
+	// int x;
+	// scanf("%d", &x);
+	printf("%d, errno: %s\n", cs_wait(5, 5), strerror(errno));
 	return 0;
 }

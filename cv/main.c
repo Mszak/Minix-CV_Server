@@ -1,6 +1,7 @@
 #include "inc.h"
 #include "constants.h"
 #include "mutex.h"
+#include "cond_var.h"
 
 #include <minix/endpoint.h>
 #include <minix/callnr.h>
@@ -109,6 +110,9 @@ static void sef_local_startup()
 
   /* Init mutex table */
   init_mutex_table();
+
+  /* Init cvar table */
+  init_cvar_table();
 }
 
 /*===========================================================================*
@@ -158,7 +162,7 @@ static int do_unlock()
  *===========================================================================*/
 static int do_wait()
 {
-  return 3;
+  return wait(req_cvar, req_mutex, who_e);
 }
 
 /*===========================================================================*

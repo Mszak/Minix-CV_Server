@@ -24,8 +24,8 @@ static struct mutex mutexes[MAX_MUTEX_AMOUNT];
 
 
 /* Local functions declaration */
-static int get_mutex_pos(int id);
-static int get_owner(int m_pos);
+int get_mutex_pos(int id);
+int get_owner(int m_pos);
 static void release_mutex(int m_pos);
 static void notify_lock_acq(int next_proc);
 
@@ -87,7 +87,7 @@ int lock(int mutex_id, int proc_id) {
 	}
 }
 
-static int get_mutex_pos(int id) {
+int get_mutex_pos(int id) {
 	for (int i = 0; i < current_mutex_count; ++i) {
 		if (mutexes[i].id == id) {
 			return i;
@@ -97,7 +97,7 @@ static int get_mutex_pos(int id) {
 	return -1;
 }
 
-static int get_owner(int m_pos) {
+int get_owner(int m_pos) {
 	return mutexes[m_pos].owner;
 }
 
