@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
     get_work(&m);
     printf("CV: got from %d: %d\n", who_e, callnr);
     switch (callnr) {
-      //TODO signals
+      //TODO signals, free mutex on termination
       case CV_LOCK:
         result = do_lock();
         break;
@@ -142,7 +142,6 @@ static int do_lock()
   printf("CV_LOCK: mutex: %d, proc: %d\n", req_mutex, who_e);
   int res = lock(req_mutex, who_e);
   printf("CV_LOCK_ANSWER: mutex: %d, proc: %d\n, res: %d\n", req_mutex, who_e, res);
-  printf("CV_LOCK_EDONOTREPLY: %d\n", EDONTREPLY);
   return res;
 }
 
@@ -170,5 +169,6 @@ static int do_wait()
  *===========================================================================*/
 static int do_broadcast()
 {
-  return 4;
+  broadcast(req_cvar);
+  return OK;
 }

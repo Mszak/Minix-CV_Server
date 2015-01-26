@@ -16,10 +16,16 @@
 
 int main(int argx, char** argv)
 {
-	cs_lock(5);
-	// printf("Got lock\n");
-	// int x;
-	// scanf("%d", &x);
-	printf("%d, errno: %s\n", cs_wait(5, 5), strerror(errno));
+	int x;
+	scanf("%d", &x);
+	if (x == 0) {
+		cs_lock(5);
+		cs_wait(5, 5);
+		printf("GOT IT!\n");	
+	}
+	else {
+		cs_broadcast(5);
+	}
+	
 	return 0;
 }

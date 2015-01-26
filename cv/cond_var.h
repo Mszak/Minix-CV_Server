@@ -3,6 +3,6 @@
 
 void init_cvar_table(void);
 int wait(int, int, int);
-int broadcast(int);
+void broadcast(int);
 
 #endif
