@@ -1,0 +1,1 @@
+#define MAX_MUTEX_AMOUNT 1024
